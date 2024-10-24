@@ -1,6 +1,16 @@
 #!venv/bin/python3
 
 import pygame, time, select, math
+from gpiozero import Button
+
+buttonA = Button(5)
+buttonB = Button(6)
+buttonL = Button(27)
+buttonR = Button(23)
+buttonU = Button(17)
+buttonD = Button(22)
+buttonC = Button(4)
+
 
 surfaceSize = (240, 240)
 fontFile = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
@@ -17,32 +27,15 @@ def refresh():
     f.close()
     time.sleep(0.016)
 
-lcd.fill((255,0,0))
-lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
-refresh()
-
-lcd.fill((0, 255, 0))
-lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
-refresh()
-
-lcd.fill((0,0,255))
-lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
-refresh()
-
-lcd.fill((0,0,255))
-lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
-refresh()
-
-lcd.fill((128, 128, 128))
-lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
-refresh()
 
 # This loop allows us to write red dots on the screen where we touch it
 r = 0
 while True:
     r = (r + 1) % 255
-    lcd.fill((r,r,r))
+    lcd.fill((0,0,0))
     pygame.draw.circle(lcd, (r % 255, 0, 0), (120, 120) , 120, 60)
+    pygame.draw.ellipse(lcd, buttonA.is_pressed ? (255,255,255) : (25,25,25), (140, 80, 180, 120),
+    lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
     refresh()
 
 exit()

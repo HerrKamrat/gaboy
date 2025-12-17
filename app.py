@@ -5,6 +5,7 @@ from gpiozero import Button
 
 buttonA = Button(5)
 buttonB = Button(6)
+
 buttonL = Button(27)
 buttonR = Button(23)
 buttonU = Button(17)
@@ -13,12 +14,12 @@ buttonC = Button(4)
 
 
 surfaceSize = (240, 240)
-fontFile = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
+# fontFile = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 
 pygame.init()
-pygame.font.init()
+# pygame.font.init()
 
-defaultFont = pygame.font.Font(fontFile, 30)
+# defaultFont = pygame.font.Font(fontFile, 30)
 lcd = pygame.Surface(surfaceSize)
 
 def refresh():
@@ -26,15 +27,26 @@ def refresh():
     f.write(lcd.get_buffer())
     f.close()
     time.sleep(0.016)
-
-
+    
 # This loop allows us to write red dots on the screen where we touch it
 r = 0
+defaultColor = (25,25,25)
+pressedColor = (255,255,255)
+
+buttonSize = 24
+
+buttons = [
+    (buttonA, (200, 200)),
+    (buttonB, (224, 224))
+]
+
 while True:
     r = (r + 1) % 255
     lcd.fill((0,0,0))
-    pygame.draw.circle(lcd, ((255,255,255) if buttonA.is_pressed else (25,25,25)), (120, 120) , 120, 60)
-    lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
+
+    for button, position in buttons:
+        pygame.draw.circle(lcd, (pressedColor if button.is_pressed else pressedColor), position, buttonSize, 0)
+    # lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
     refresh()
 
 exit()

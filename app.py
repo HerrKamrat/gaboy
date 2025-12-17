@@ -33,7 +33,7 @@ r = 0
 while True:
     r = (r + 1) % 255
     lcd.fill((0,0,0))
-    pygame.draw.circle(lcd,  (255,255,255) if buttonA.is_pressed else (25,25,25)), (120, 120) , 120, 60)
+    pygame.draw.circle(lcd, ((255,255,255) if buttonA.is_pressed else (25,25,25)), (120, 120) , 120, 60)
     lcd.blit(defaultFont.render("Hello World!", False, (0, 0, 0)),(0, 0))
     refresh()
 

@@ -41,11 +41,11 @@ buttons = [
     (buttonA, (200, 200)),
     (buttonB, (224, 224))
 
-    (buttonL, (cx - buttonSize, cy))
-    (buttonR, (cx + buttonSize, cy))
-    (buttonU, (cx, cy - buttonSize))
-    (buttonD, (cx, cy + buttonSize))
-    (buttonC, (cx, cy))
+    (buttonL, (cx - buttonSize, cy)),
+    (buttonR, (cx + buttonSize, cy)),
+    (buttonU, (cx, cy - buttonSize)),
+    (buttonD, (cx, cy + buttonSize)),
+    (buttonC, (cx, cy)),
 ]
 
 while True:

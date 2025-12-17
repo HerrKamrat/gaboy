@@ -1,10 +1,11 @@
 #!venv/bin/python3
 
+from subprocess import check_call
 import pygame, time, select, math
 from gpiozero import Button
 
-buttonA = Button(5)
-buttonB = Button(6)
+buttonA = Button(5, hold_time=2)
+buttonB = Button(6, hold_time=2)
 
 buttonL = Button(27)
 buttonR = Button(23)
@@ -12,6 +13,12 @@ buttonU = Button(17)
 buttonD = Button(22)
 buttonC = Button(4)
 
+def shutdown():
+    if buttonA.is_held and buttonB.is_held:
+        check_call(['sudo', 'poweroff'])
+
+buttonA.when_held = shutdown
+buttonB.when_held = shutdown
 
 surfaceSize = (240, 240)
 # fontFile = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"

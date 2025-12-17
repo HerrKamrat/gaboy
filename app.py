@@ -35,11 +35,12 @@ pressedColor = (255,255,255)
 
 buttonSize = 24
 
-cx = 24
-cy = 24
+cx = 2 * buttonSize
+cy = 2 * buttonSize
+
 buttons = [
-    (buttonA, (240 - 2 * buttonSize, 240 - 2 * buttonSize)),
-    (buttonB, (240 - buttonSize, 240 - buttonSize)),
+    (buttonA, (240 - 2 * buttonSize, 240 - buttonSize)),
+    (buttonB, (240 - buttonSize, 240 - 2 * buttonSize)),
 
     (buttonL, (cx - buttonSize, cy)),
     (buttonR, (cx + buttonSize, cy)),
@@ -49,8 +50,8 @@ buttons = [
 ]
 
 while True:
-    r = (r + 1) % 255
-    lcd.fill((r,r,r))
+    # r = (r + 1) % 255
+    # lcd.fill((r,r,r))
 
     for button, position in buttons:
         pygame.draw.circle(lcd, (pressedColor if button.is_pressed else defaultColor), position, buttonSize / 2, 0)
